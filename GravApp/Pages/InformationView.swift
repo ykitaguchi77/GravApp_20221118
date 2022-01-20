@@ -14,7 +14,7 @@ struct Informations: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var isSaved = false
     @State private var goTakePhoto: Bool = false  //撮影ボタン
-    @State private var temp = "" //スキャン結果格納用の変数
+    @State var temp = "" //スキャン結果格納用の変数
     
     var body: some View {
         NavigationView{

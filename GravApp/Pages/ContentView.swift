@@ -12,14 +12,21 @@ import CoreData
 //変数を定義
 class User : ObservableObject {
     @Published var date: Date = Date()
+    @Published var age: Int = -1
+    @Published var smokeYear: Int = 0
+    @Published var smokeNum: Int = 0
     @Published var id: String = ""
     @Published var hashid: String = ""
-    @Published var selected_side: Int = 0
-    @Published var selected_hospital: Int = 0
+    @Published var selected_side: Int = -1
+    @Published var selected_gender: Int = -1
+    @Published var selected_hospital: Int = -1
+    @Published var selected_smoking: Int = -1
     @Published var selected_disease: Int = 0
     @Published var free_disease: String = ""
-    @Published var side: [String] = ["", "右", "左"]
-    @Published var hospitals: [String] = ["", "筑波大", "大阪大", "東京歯科大市川", "鳥取大", "宮田眼科", "順天堂大", "ツカザキ病院", "広島大", "新潟大", "富山大", "福島県立医大", "東京医大"]
+    @Published var side: [String] = ["右", "左"]
+    @Published var gender: [String] = ["男", "女"]
+    @Published var YesNo: [String] = ["あり", "なし"]
+    @Published var hospitals: [String] = ["オリンピア眼科病院", "大阪大"]
     @Published var disease: [String] = ["", "正常", "", "<<結膜良性腫瘍>>", "翼状片", "偽翼状片", "瞼裂斑", "結膜母斑", "結膜色素沈着（非腫瘍性）", "結膜色素沈着（非腫瘍性）", "結膜下出血", "結膜嚢胞", "血管腫", "肉芽腫", "結膜良性腫瘍その他","", "<<結膜悪性腫瘍>>", "結膜扁平上皮癌", "結膜悪性黒色腫", "結膜悪性リンパ腫", "結膜上皮内新生物", "結膜悪性腫瘍その他", "", "<<眼瞼良性腫瘍>>", "霰粒腫", "麦粒腫", "眼瞼母斑", "脂漏性角化症", "乳頭種", "血管腫", "肉芽腫", "マイボーム腺嚢胞","眼瞼良性腫瘍その他","", "<<眼瞼悪性腫瘍>>","脂腺癌", "扁平上皮癌", "基底細胞癌", "眼瞼悪性腫瘍その他", "", "分類不能（自由記載）"]
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
@@ -37,6 +44,7 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
     @State private var goTakePhoto: Bool = false  //撮影ボタン
     @State private var isPatientInfo: Bool = false  //患者情報入力ボタン
+    @State private var goInterview: Bool = false  //問診ボタン
     @State private var goSendData: Bool = false  //送信ボタン
     @State private var savedData: Bool = false  //送信ボタン
     @State private var newPatient: Bool = false  //送信ボタン
@@ -73,6 +81,26 @@ struct ContentView: View {
                 Informations(user: user)
                 //こう書いておかないとmissing as ancestorエラーが時々でる
             }
+            
+            Button(action: {
+                self.goInterview = true /*またはself.show.toggle() */
+            }) {
+                HStack{
+                    Image(systemName: "highlighter")
+                    Text("問診")
+                }
+                    .foregroundColor(Color.white)
+                    .font(Font.largeTitle)
+            }
+                .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                .background(Color.black)
+                .padding()
+                .sheet(isPresented: self.$goInterview) {
+                GravInterview(user: user)
+                //こう書いておかないとmissing as ancestorエラーが時々でる
+            }
+            
+            
             
             Button(action: {
                 self.goTakePhoto = true /*またはself.show.toggle() */

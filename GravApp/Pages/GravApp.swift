@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OcularTumorApp: App {
+struct GravApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
