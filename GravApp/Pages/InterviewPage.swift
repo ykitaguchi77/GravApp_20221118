@@ -107,6 +107,101 @@ struct GravInterview: View {
                                }
                             
                         }
+                    
+                    
+                        Section(header: Text("症状"), footer: Text("")){
+                            HStack{
+                                Text("目の奥の違和感や痛み")
+                                Picker(selection: $user.selected_retroBulbarPain,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_retroBulbarPain) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                            }
+                            
+                            HStack{
+                                Text("目を動かすと痛い")
+                                Picker(selection: $user.selected_ocularMovePain,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_ocularMovePain) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                            }
+                            
+                            HStack{
+                                Text("上or下まぶたが腫れぼったい")
+                                Picker(selection: $user.selected_lidSwelling,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_lidSwelling) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                            }
+                            
+                            HStack{
+                                Text("片目ずつで見え方がぼける")
+                                Picker(selection: $user.selected_blurredVision,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_blurredVision) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                            }
+                            
+                            HStack{
+                                Text("両目で正面がだぶって見える")
+                                Picker(selection: $user.selected_primaryDiplopia,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_primaryDiplopia) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                                    
+                            }
+                            
+                            HStack{
+                                Text("両目で上や横がだぶって見える")
+                                Picker(selection: $user.selected_periDiplopia,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_periDiplopia) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 100)
+                            }
+                            
+                        }
                    
                     
                 }.navigationTitle("患者アンケート")

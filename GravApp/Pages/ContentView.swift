@@ -19,15 +19,22 @@ class User : ObservableObject {
     @Published var hashid: String = ""
     @Published var selected_side: Int = -1
     @Published var selected_gender: Int = -1
-    @Published var selected_hospital: Int = -1
+    @Published var selected_hospital: Int = 0
     @Published var selected_smoking: Int = -1
-    @Published var selected_disease: Int = 0
+    @Published var selected_disease: Int = -1
+    @Published var selected_retroBulbarPain: Int = -1
+    @Published var selected_ocularMovePain: Int = -1
+    @Published var selected_lidSwelling: Int = -1
+    @Published var selected_blurredVision: Int = -1
+    @Published var selected_primaryDiplopia: Int = -1
+    @Published var selected_periDiplopia: Int = -1
+
     @Published var free_disease: String = ""
     @Published var side: [String] = ["右", "左"]
     @Published var gender: [String] = ["男", "女"]
     @Published var YesNo: [String] = ["あり", "なし"]
-    @Published var hospitals: [String] = ["オリンピア眼科病院", "大阪大"]
-    @Published var disease: [String] = ["", "正常", "", "<<結膜良性腫瘍>>", "翼状片", "偽翼状片", "瞼裂斑", "結膜母斑", "結膜色素沈着（非腫瘍性）", "結膜色素沈着（非腫瘍性）", "結膜下出血", "結膜嚢胞", "血管腫", "肉芽腫", "結膜良性腫瘍その他","", "<<結膜悪性腫瘍>>", "結膜扁平上皮癌", "結膜悪性黒色腫", "結膜悪性リンパ腫", "結膜上皮内新生物", "結膜悪性腫瘍その他", "", "<<眼瞼良性腫瘍>>", "霰粒腫", "麦粒腫", "眼瞼母斑", "脂漏性角化症", "乳頭種", "血管腫", "肉芽腫", "マイボーム腺嚢胞","眼瞼良性腫瘍その他","", "<<眼瞼悪性腫瘍>>","脂腺癌", "扁平上皮癌", "基底細胞癌", "眼瞼悪性腫瘍その他", "", "分類不能（自由記載）"]
+    @Published var hospitals: [String] = ["", "オリンピア眼科病院", "大阪大"]
+    @Published var disease: [String] = ["", "眼症なし", "", "活動期", "軽症", "中等症〜重症", "", "結膜母斑", "結膜色素沈着（非腫瘍性）", "結膜色素沈着（非腫瘍性）", "結膜下出血", "結膜嚢胞", "血管腫", "肉芽腫", "結膜良性腫瘍その他","", "<<結膜悪性腫瘍>>", "結膜扁平上皮癌", "結膜悪性黒色腫", "結膜悪性リンパ腫", "結膜上皮内新生物", "結膜悪性腫瘍その他", "", "<<眼瞼良性腫瘍>>", "霰粒腫", "麦粒腫", "眼瞼母斑", "脂漏性角化症", "乳頭種", "血管腫", "肉芽腫", "マイボーム腺嚢胞","眼瞼良性腫瘍その他","", "<<眼瞼悪性腫瘍>>","脂腺癌", "扁平上皮癌", "基底細胞癌", "眼瞼悪性腫瘍その他", "", "分類不能（自由記載）"]
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
