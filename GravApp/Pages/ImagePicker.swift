@@ -21,6 +21,7 @@ import AVFoundation
 struct Imagepicker : UIViewControllerRepresentable {
     @Binding var show:Bool
     @Binding var image:Data
+    @State private var shutter: Bool = false
     
     var sourceType:UIImagePickerController.SourceType
  
@@ -46,8 +47,9 @@ struct Imagepicker : UIViewControllerRepresentable {
         
         //overlay image
         let screenWidth = UIScreen.main.bounds.size.width
-//        controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
-        controller.cameraOverlayView = RectangleView(frame: CGRect(x: 0, y: screenWidth*27/96, width: screenWidth, height: screenWidth))
+        //controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
+        
+        controller.cameraOverlayView = MergeView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*1.5))  //screenheightで定義すると、use_imageに描画が重なってしまいボタンが押せなくなるため小さくした
         
         return controller
     }
@@ -141,32 +143,9 @@ struct Imagepicker : UIViewControllerRepresentable {
 }
 
 
-//class CircleView: UIView {
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        self.backgroundColor = UIColor.clear
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func draw(_ rect: CGRect) {
-//        if let context = UIGraphicsGetCurrentContext() {
-//            context.setLineWidth(3.0)
-//            UIColor.red.set()
-//
-//            let center = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-//            let radius = (frame.size.width - 10) / 2
-//
-//            context.addArc(center: center, radius: radius, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
-//            context.strokePath()
-//        }
-//    }
-//}
 
-class RectangleView: UIView {
+
+class MergeView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -180,11 +159,23 @@ class RectangleView: UIView {
     override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             context.setLineWidth(3.0)
-            UIColor.red.set()
-
             let width = frame.size.width
 
-            context.addRect(CGRect(origin:CGPoint(x:0, y:0), size: CGSize(width:width, height:width)))
+//            //Rectangle
+//            UIColor.red.set()
+//            context.addRect(CGRect(origin:CGPoint(x:0, y:width*27/96), size: CGSize(width:width, height:width)))
+//            context.strokePath()
+//
+//            //Circle
+//            UIColor.blue.set()
+//            let radius = frame.size.width/2
+//            context.addArc(center: CGPoint(x:radius, y:radius*150/96), radius: radius*4/5, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
+//            context.strokePath()
+            
+            //Elllipse
+            UIColor.blue.set()
+            context.addEllipse(in: CGRect(x:width/5, y:width*37/96, width:width*3/5, height:width*4/5))
+            
             context.strokePath()
         }
     }
