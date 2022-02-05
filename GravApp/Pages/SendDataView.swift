@@ -51,7 +51,6 @@ struct SendData: View {
                             }
                             Text("ID: \(self.user.id)")
                             Text("施設: \(self.user.hospitals[user.selected_hospital])")
-                            Text("診断名: \(user.disease[user.selected_disease])")
                             Text("自由記載: \(self.user.free_disease)")
                         }
                     }
@@ -73,7 +72,7 @@ struct SendData: View {
                     .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
                     .background(Color.blue)
                     .padding()
-            } else if (self.user.id.isEmpty || self.user.side[user.selected_side].isEmpty || self.user.hospitals[user.selected_hospital].isEmpty || self.user.disease[user.selected_disease].isEmpty){
+            } else if (self.user.id.isEmpty || self.user.hospitals[user.selected_hospital].isEmpty ){
                 Button(action: {
                     showingAlert = true //空欄があるとエラー
                 }) {
@@ -120,7 +119,7 @@ struct SendData: View {
     //ResultHolderにテキストデータを格納
     public func SaveToResultHolder(){
         //var imagenum: String = String(user.imageNum)
-        ResultHolder.GetInstance().SetAnswer(q1: self.stringDate(), q2: user.hashid, q3: user.id, q4: self.numToString(num: self.user.imageNum), q5: self.user.side[user.selected_side], q6: self.user.hospitals[user.selected_hospital], q7: self.user.disease[user.selected_disease], q8: user.free_disease)
+        ResultHolder.GetInstance().SetAnswer(q1: self.stringDate(), q2: user.hashid, q3: user.id, q4: self.numToString(num: self.user.imageNum), q5: self.user.hospitals[user.selected_hospital], q6: user.free_disease)
     }
     
     public func stringDate()->String{
@@ -143,9 +142,7 @@ struct SendData: View {
         newItem.newdate = self.user.date
         newItem.newid = self.user.id
         newItem.newimagenum = numToString(num: self.user.imageNum)
-        newItem.newside = self.user.side[user.selected_side]
         newItem.newhospitals = self.user.hospitals[user.selected_hospital]
-        newItem.newdisease = self.user.disease[user.selected_disease]
         newItem.newfreedisease = self.user.free_disease
 
         let dateFormatter = DateFormatter()

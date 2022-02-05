@@ -136,8 +136,8 @@ extension CGImage {
         let rectlength = min(self.width, self.height)
         //最後に回転させるので縦横が逆になる
         //let left = (self.width - rectlength) / 2
-        let left = 0
-        let top = (self.height - rectlength) / 2
+        let left = rectlength/9 //撮影画面のguideとpreview画面がずれるので補正（高さ）
+        let top = (self.height - rectlength)/2
         let croppingRect = CGRect(x: left, y: top, width: rectlength, height: rectlength)
         let croppedImage = self.cropping(to: croppingRect)!
         return croppedImage

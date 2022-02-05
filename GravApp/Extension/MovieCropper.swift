@@ -4,7 +4,6 @@
 //
 //  Created by Yoshiyuki Kitaguchi on 2021/12/23.
 //
-
 import AVFoundation
 import Foundation
 import UIKit
@@ -19,28 +18,32 @@ final class MovieCropper {
         let avAsset: AVAsset = AVAsset(url: sourceURL)
         
         let videoTrack: AVAssetTrack = avAsset.tracks(withMediaType: AVMediaType.video)[0]
-        let audioTracks: [AVAssetTrack] = avAsset.tracks(withMediaType: AVMediaType.audio)
-        let audioTrack: AVAssetTrack? =  audioTracks.count > 0 ? audioTracks[0] : nil
+//        今回はaudioは挿入しない
+//        let audioTracks: [AVAssetTrack] = avAsset.tracks(withMediaType: AVMediaType.audio)
+//        let audioTrack: AVAssetTrack? =  audioTracks.count > 0 ? audioTracks[0] : nil
         
         let mixComposition : AVMutableComposition = AVMutableComposition()
         
         let compositionVideoTrack: AVMutableCompositionTrack = mixComposition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)!
-        let compositionAudioTrack: AVMutableCompositionTrack? = audioTrack != nil
-            ? mixComposition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)!
-            : nil
+//        let compositionAudioTrack: AVMutableCompositionTrack? = audioTrack != nil
+//            ? mixComposition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)!
+//            : nil
         
         try! compositionVideoTrack.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: avAsset.duration), of: videoTrack, at: CMTime.zero)
-        try! compositionAudioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: avAsset.duration), of: audioTrack!, at: CMTime.zero)
+
+//        try! compositionAudioTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: avAsset.duration), of: audioTrack!, at: CMTime.zero)
+        
         
         compositionVideoTrack.preferredTransform = videoTrack.preferredTransform
         
         var croppedVideoComposition: AVMutableVideoComposition? = nil
 
-        let squareEdgeLength: CGFloat = videoTrack.naturalSize.height
+        let squareEdgeLength = videoTrack.naturalSize.height
+        let squareEdgeCoordinate = videoTrack.naturalSize.height*27/96
         
         //ビデオの切り抜きサイズ設定
 //        let croppingRect: CGRect = CGRect(x: (videoTrack.naturalSize.width - squareEdgeLength) / 2, y: 0, width: squareEdgeLength, height: squareEdgeLength)
-        let croppingRect: CGRect = CGRect(x: (videoTrack.naturalSize.width - squareEdgeLength) / 3, y: 0, width: squareEdgeLength, height: squareEdgeLength)
+        let croppingRect: CGRect = CGRect(x: squareEdgeCoordinate, y: 0, width: squareEdgeLength, height: squareEdgeLength)
         let transform: CGAffineTransform = videoTrack.preferredTransform.translatedBy(x: -croppingRect.minX, y: -croppingRect.minY)
         
         // layer instruction を正方形に

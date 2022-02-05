@@ -10,7 +10,6 @@
 //https://off.tokyo/blog/how-to-access-info-plist/
 //https://ichi.pro/swift-uiimagepickercontroller-250133769115456
 //正方形動画撮影　https://superhahnah.com/swift-square-av-capture/
-
 import SwiftUI
 import UIKit
 import AssetsLibrary
@@ -46,11 +45,9 @@ struct Imagepicker : UIViewControllerRepresentable {
         controller.allowsEditing = false
         
         //overlay image
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = min(screenSize.width, screenSize.height)
-        let screenHeight = min(screenSize.width, screenSize.height)
+        let screenWidth = UIScreen.main.bounds.size.width
 //        controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
-        controller.cameraOverlayView = RectangleView(frame: CGRect(x: 0, y: screenWidth / 8, width: screenWidth, height: screenHeight))
+        controller.cameraOverlayView = RectangleView(frame: CGRect(x: 0, y: screenWidth*27/96, width: screenWidth, height: screenWidth))
         
         return controller
     }
@@ -85,7 +82,6 @@ struct Imagepicker : UIViewControllerRepresentable {
                     self.parent.show.toggle()
 
                     UIImageWriteToSavedPhotosAlbum(image, nil,nil,nil) //カメラロールに保存
-
                     let cgImage = image.cgImage //CGImageに変換
                     let cropped = cgImage!.cropToSquare()
                     //撮影した画像をresultHolderに格納する
@@ -115,15 +111,7 @@ struct Imagepicker : UIViewControllerRepresentable {
                     })
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        // 動画の処理でエラーが出る場合にはここの数字を延ばす
 
-                        //temporary pathにサムネイルを保存
-                        //let thumbnailImage = self.thumnailImageForFileUrl(fileUrl: croppedMovieFileURL)?.cgImage
-                        //サムネイルをresultHolderに格納
-                        //let rawImage = UIImage(cgImage: thumbnailImage!)
-                        //ResultHolder.GetInstance().SetImage(index: 0, cgImage: rawImage.cgImage!)
-
-                        //撮影画面を消す
                         self.parent.show.toggle()
                     }
                 }
@@ -137,39 +125,11 @@ struct Imagepicker : UIViewControllerRepresentable {
             PHPhotoLibrary.shared().performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
             })
-//            { (isCompleted, error) in
-//                if isCompleted {
-//                  // フォトライブラリに書き出し成功したらtempfileから削除する
-//                  do {
-//                    try FileManager.default.removeItem(atPath: fileURL.path)
-//                    print("フォトライブラリ書き出し・ファイル削除成功 : \(fileURL.lastPathComponent)")
-//                  }
-//                  catch {
-//                    print("フォトライブラリ書き出し後のファイル削除失敗 : \(fileURL.lastPathComponent)")
-//                  }
-//                }
-//                else {
-//                  print("フォトライブラリ書き出し失敗 : \(fileURL.lastPathComponent)")
-//                }
-//              }
 
         }
         
         //サムネイル切り出し　https://qiita.com/doge_kun55/items/727b5caf100a40739bdf
-        func thumnailImageForFileUrl(fileUrl: URL) -> UIImage? {
-                let asset = AVAsset(url: fileUrl)
-
-                let imageGenerator = AVAssetImageGenerator(asset: asset)
-
-                do {
-                    let thumnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1,timescale: 60), actualTime: nil)
-                    //print("サムネイルの切り取り成功！")
-                    return UIImage(cgImage: thumnailCGImage, scale: 0, orientation: .right)
-                }catch let err{
-                    print("エラー\(err)")
-                }
-                return nil
-            }
+        //→depricated
         
         
         
@@ -206,7 +166,6 @@ struct Imagepicker : UIViewControllerRepresentable {
 //    }
 //}
 
-
 class RectangleView: UIView {
 
     override init(frame: CGRect) {
@@ -224,9 +183,8 @@ class RectangleView: UIView {
             UIColor.red.set()
 
             let width = frame.size.width
-            let height = frame.size.width
 
-            context.addRect(CGRect(origin:CGPoint(x:0, y:width/8), size: CGSize(width:width, height:height)))
+            context.addRect(CGRect(origin:CGPoint(x:0, y:0), size: CGSize(width:width, height:width)))
             context.strokePath()
         }
     }

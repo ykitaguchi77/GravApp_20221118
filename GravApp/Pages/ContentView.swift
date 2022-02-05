@@ -22,19 +22,25 @@ class User : ObservableObject {
     @Published var selected_hospital: Int = 0
     @Published var selected_smoking: Int = -1
     @Published var selected_disease: Int = -1
-    @Published var selected_retroBulbarPain: Int = -1
-    @Published var selected_ocularMovePain: Int = -1
-    @Published var selected_lidSwelling: Int = -1
-    @Published var selected_blurredVision: Int = -1
-    @Published var selected_primaryDiplopia: Int = -1
-    @Published var selected_periDiplopia: Int = -1
+    @Published var selected_CAS_retroBulbarPain: Int = -1
+    @Published var selected_CAS_gazePain: Int = -1
+    @Published var selected_subj_lidSwelling: Int = -1
+    @Published var selected_subj_blurredVision: Int = -1
+    @Published var selected_subj_primaryDiplopia: Int = -1
+    @Published var selected_subj_periDiplopia: Int = -1
+    
+    @Published var selected_CAS_lidSwelling: Int = -1
+    @Published var selected_CAS_lidErythema: Int = -1
+    @Published var selected_CAS_conjRedness: Int = -1
+    @Published var selected_CAS_conjChemosis: Int = -1
+    @Published var selected_CAS_caruncularRedness: Int = -1
+    @Published var hertel_R: Int = -1
+    @Published var hertel_L: Int = -1
 
     @Published var free_disease: String = ""
-    @Published var side: [String] = ["右", "左"]
     @Published var gender: [String] = ["男", "女"]
     @Published var YesNo: [String] = ["あり", "なし"]
     @Published var hospitals: [String] = ["", "オリンピア眼科病院", "大阪大"]
-    @Published var disease: [String] = ["", "眼症なし", "", "活動期", "軽症", "中等症〜重症", "", "結膜母斑", "結膜色素沈着（非腫瘍性）", "結膜色素沈着（非腫瘍性）", "結膜下出血", "結膜嚢胞", "血管腫", "肉芽腫", "結膜良性腫瘍その他","", "<<結膜悪性腫瘍>>", "結膜扁平上皮癌", "結膜悪性黒色腫", "結膜悪性リンパ腫", "結膜上皮内新生物", "結膜悪性腫瘍その他", "", "<<眼瞼良性腫瘍>>", "霰粒腫", "麦粒腫", "眼瞼母斑", "脂漏性角化症", "乳頭種", "血管腫", "肉芽腫", "マイボーム腺嚢胞","眼瞼良性腫瘍その他","", "<<眼瞼悪性腫瘍>>","脂腺癌", "扁平上皮癌", "基底細胞癌", "眼瞼悪性腫瘍その他", "", "分類不能（自由記載）"]
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
@@ -59,7 +65,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing:0){
-            Text("Ocular tumor app")
+            Text("Grav app")
                 .font(.largeTitle)
                 .padding(.bottom)
             
@@ -192,9 +198,7 @@ struct ContentView: View {
                     self.user.date = Date()
                     self.user.id = ""
                     self.user.imageNum = 0
-                    self.user.selected_side = 0
                     self.user.selected_hospital = 0
-                    self.user.selected_disease = 0
                     self.user.free_disease = ""
                     self.user.isSendData = false
                     

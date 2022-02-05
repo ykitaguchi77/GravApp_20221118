@@ -112,13 +112,13 @@ struct GravInterview: View {
                         Section(header: Text("症状"), footer: Text("")){
                             HStack{
                                 Text("目の奥の違和感や痛み")
-                                Picker(selection: $user.selected_retroBulbarPain,
+                                Picker(selection: $user.selected_CAS_retroBulbarPain,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_retroBulbarPain) {_ in
+                                    .onChange(of: user.selected_CAS_retroBulbarPain) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -127,13 +127,13 @@ struct GravInterview: View {
                             
                             HStack{
                                 Text("目を動かすと痛い")
-                                Picker(selection: $user.selected_ocularMovePain,
+                                Picker(selection: $user.selected_CAS_gazePain,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_ocularMovePain) {_ in
+                                    .onChange(of: user.selected_CAS_gazePain) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -142,13 +142,13 @@ struct GravInterview: View {
                             
                             HStack{
                                 Text("上or下まぶたが腫れぼったい")
-                                Picker(selection: $user.selected_lidSwelling,
+                                Picker(selection: $user.selected_subj_lidSwelling,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_lidSwelling) {_ in
+                                    .onChange(of: user.selected_subj_lidSwelling) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -157,13 +157,13 @@ struct GravInterview: View {
                             
                             HStack{
                                 Text("片目ずつで見え方がぼける")
-                                Picker(selection: $user.selected_blurredVision,
+                                Picker(selection: $user.selected_subj_blurredVision,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_blurredVision) {_ in
+                                    .onChange(of: user.selected_subj_blurredVision) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -172,13 +172,13 @@ struct GravInterview: View {
                             
                             HStack{
                                 Text("両目で正面がだぶって見える")
-                                Picker(selection: $user.selected_primaryDiplopia,
+                                Picker(selection: $user.selected_subj_primaryDiplopia,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_primaryDiplopia) {_ in
+                                    .onChange(of: user.selected_subj_primaryDiplopia) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -188,13 +188,13 @@ struct GravInterview: View {
                             
                             HStack{
                                 Text("両目で上や横がだぶって見える")
-                                Picker(selection: $user.selected_periDiplopia,
+                                Picker(selection: $user.selected_subj_periDiplopia,
                                            label: Text("YesNo")) {
                                     ForEach(0..<user.YesNo.count) {
                                         Text(self.user.YesNo[$0])
                                             }
                                     }
-                                    .onChange(of: user.selected_periDiplopia) {_ in
+                                    .onChange(of: user.selected_subj_periDiplopia) {_ in
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
@@ -202,7 +202,30 @@ struct GravInterview: View {
                             }
                             
                         }
-                   
+                    
+                        Section(header: Text("Hertel"), footer: Text("")){
+                            HStack{
+                                Picker(selection: $user.hertel_R,
+                                       label: Text("右")) {
+                                    ForEach(5..<35){ year in
+                                        Text("\(year)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_R) { _ in
+                                   self.user.isSendData = false
+                                   }
+                                
+                                Picker(selection: $user.hertel_L,
+                                       label: Text("左")) {
+                                    ForEach(5..<35){ num in
+                                        Text("\(num)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_L) { _ in
+                                   self.user.isSendData = false
+                                }
+                            }
+                    }
                     
                 }.navigationTitle("患者アンケート")
                 .onAppear(){

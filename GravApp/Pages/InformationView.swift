@@ -19,66 +19,147 @@ struct Informations: View {
     var body: some View {
         NavigationView{
                 Form{
-                        HStack{
-                            Text("入力日時")
-                            Text(self.user.date, style: .date)
-                        }
-                    
-                        //DatePicker("入力日時", selection: $user.date)
-                    
-                        
-                        HStack {
-                            Text("I D ")
-                            TextField("idを入力してください", text: $user.id)
-                            .keyboardType(.numbersAndPunctuation)
-                            .onChange(of: user.id) { _ in
-                                self.user.isSendData = false
+                        Section(header: Text("基本情報"), footer: Text("")){
+                            HStack{
+                                Text("入力日時")
+                                Text(self.user.date, style: .date)
+                            }
+                            //DatePicker("入力日時", selection: $user.date)
+                            
+                            Picker(selection: $user.selected_hospital,
+                                       label: Text("施設")) {
+                                ForEach(0..<user.hospitals.count) {
+                                    Text(self.user.hospitals[$0])
+                                         }
                                 }
-                            ScanButton(text: $user.id)
-                            .frame(width: 100, height: 30, alignment: .leading)
-                        }
-
-                        
-                        Picker(selection: $user.selected_hospital,
-                                   label: Text("施設")) {
-                            ForEach(0..<user.hospitals.count) {
-                                Text(self.user.hospitals[$0])
-                                     }
-                            }
-                           .onChange(of: user.selected_hospital) {_ in
-                               self.user.isSendData = false
-                               UserDefaults.standard.set(user.selected_hospital, forKey:"hospitaldefault")
-                           }
-                    
-                        Picker(selection: $user.selected_side,
-                                   label: Text("右or左")) {
-                            ForEach(0..<user.side.count) {
-                                Text(self.user.side[$0])
+                               .onChange(of: user.selected_hospital) {_ in
+                                   self.user.isSendData = false
+                                   UserDefaults.standard.set(user.selected_hospital, forKey:"hospitaldefault")
+                               }
+                            
+                            
+                            HStack {
+                                Text("I D ")
+                                TextField("idを入力してください", text: $user.id)
+                                .keyboardType(.numbersAndPunctuation)
+                                .onChange(of: user.id) { _ in
+                                    self.user.isSendData = false
                                     }
+                                ScanButton(text: $user.id)
+                                .frame(width: 100, height: 30, alignment: .leading)
                             }
-                            .onChange(of: user.selected_side) {_ in
-                                self.user.isSendData = false
+                            
+                            Picker(selection: $user.age,
+                                   label: Text("年齢")) {
+                                ForEach(0..<100){ age in
+                                    Text("\(age)")
                                 }
-                            .pickerStyle(SegmentedPickerStyle())
-                        
-                        Picker(selection: $user.selected_disease,
-                                   label: Text("疾患")) {
-                            ForEach(0..<user.disease.count) {
-                                Text(self.user.disease[$0])
-                                    }
                             }
-                           .onChange(of: user.selected_disease) { _ in
+                           .onChange(of: user.age) { _ in
                                self.user.isSendData = false
                                }
+
+                            
+                            HStack{
+                                Text("性別")
+                                Picker(selection: $user.selected_gender,
+                                           label: Text("性別")) {
+                                    ForEach(0..<user.gender.count) {
+                                        Text(self.user.gender[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_gender) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                            }
                         
-                        HStack{
-                            Text("自由記載欄")
-                            TextField("", text: $user.free_disease)
-                                .keyboardType(.default)
-                        }.layoutPriority(1)
-                        .onChange(of: user.free_disease) { _ in
-                        self.user.isSendData = false
-                    }
+                            HStack{
+                                Text("自由記載欄")
+                                TextField("", text: $user.free_disease)
+                                    .keyboardType(.default)
+                            }.layoutPriority(1)
+                            .onChange(of: user.free_disease) { _ in
+                            self.user.isSendData = false
+                            }
+                        }
+                    
+                        Section(header: Text("Clinical activity score"), footer: Text("")){
+                            HStack{
+                                Text("眼瞼発赤")
+                                Picker(selection: $user.selected_CAS_lidErythema,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_CAS_lidErythema) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                            
+                            HStack{
+                                Text("眼瞼腫脹")
+                                Picker(selection: $user.selected_CAS_lidSwelling,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_CAS_lidSwelling) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                            
+                            HStack{
+                                Text("結膜充血")
+                                Picker(selection: $user.selected_CAS_conjRedness,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_CAS_conjRedness) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                            
+                            HStack{
+                                Text("結膜浮腫")
+                                Picker(selection: $user.selected_CAS_conjChemosis,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_CAS_conjChemosis) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                            
+                            HStack{
+                                Text("涙丘充血")
+                                Picker(selection: $user.selected_CAS_caruncularRedness,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_CAS_caruncularRedness) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                        }
                 }.navigationTitle("患者情報入力")
                 .onAppear(){
                  }
