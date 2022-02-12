@@ -36,6 +36,9 @@ class User : ObservableObject {
     @Published var selected_CAS_caruncularRedness: Int = -1
     @Published var hertel_R: Int = -1
     @Published var hertel_L: Int = -1
+    @Published var aperture_R: Int = -1
+    @Published var aperture_L: Int = -1
+    @Published var selected_needSteroids: Int = -1
 
     @Published var free_disease: String = ""
     @Published var gender: [String] = ["男", "女"]
@@ -69,7 +72,7 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .padding(.bottom)
             
-            Image("IMG_1273")
+            Image("gravPhoto")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200)

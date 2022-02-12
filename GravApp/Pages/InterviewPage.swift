@@ -4,7 +4,6 @@
 //
 //  Created by Yoshiyuki Kitaguchi on 2022/01/20.
 //
-
 import SwiftUI
 
 //変数を定義
@@ -26,7 +25,7 @@ struct GravInterview: View {
         NavigationView{
             GeometryReader{bodyView in
                 Form{
-                    Section(header: Text("基本情報")){
+//                    Section(header: Text("基本情報")){
 //                    Sliderを用いた実装（使いにくいのでdepricateした）
 //                        HStack {
 //                            Text("年齢 ")
@@ -45,31 +44,31 @@ struct GravInterview: View {
 //                            //.frame(width: 100, height: 30, alignment: .leading)
 //                        }
                         
-                            Picker(selection: $user.age,
-                                   label: Text("年齢")) {
-                                ForEach(0..<100){ age in
-                                    Text("\(age)")
-                                }
-                            }
-                           .onChange(of: user.age) { _ in
-                               self.user.isSendData = false
-                               }
-
-                            
-                            HStack{
-                                Text("性別")
-                                Picker(selection: $user.selected_gender,
-                                           label: Text("性別")) {
-                                    ForEach(0..<user.gender.count) {
-                                        Text(self.user.gender[$0])
-                                            }
-                                    }
-                                    .onChange(of: user.selected_gender) {_ in
-                                        self.user.isSendData = false
-                                        }
-                                    .pickerStyle(SegmentedPickerStyle())
-                            }
-                    }
+//                            Picker(selection: $user.age,
+//                                   label: Text("年齢")) {
+//                                ForEach(0..<100){ age in
+//                                    Text("\(age)")
+//                                }
+//                            }
+//                           .onChange(of: user.age) { _ in
+//                               self.user.isSendData = false
+//                               }
+//
+//
+//                            HStack{
+//                                Text("性別")
+//                                Picker(selection: $user.selected_gender,
+//                                           label: Text("性別")) {
+//                                    ForEach(0..<user.gender.count) {
+//                                        Text(self.user.gender[$0])
+//                                            }
+//                                    }
+//                                    .onChange(of: user.selected_gender) {_ in
+//                                        self.user.isSendData = false
+//                                        }
+//                                    .pickerStyle(SegmentedPickerStyle())
+//                            }
+//                    }
                 
                         Section(header: Text("喫煙"), footer: Text("")){
                             HStack{
@@ -203,29 +202,7 @@ struct GravInterview: View {
                             
                         }
                     
-                        Section(header: Text("Hertel"), footer: Text("")){
-                            HStack{
-                                Picker(selection: $user.hertel_R,
-                                       label: Text("右")) {
-                                    ForEach(5..<35){ year in
-                                        Text("\(year)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_R) { _ in
-                                   self.user.isSendData = false
-                                   }
-                                
-                                Picker(selection: $user.hertel_L,
-                                       label: Text("左")) {
-                                    ForEach(5..<35){ num in
-                                        Text("\(num)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_L) { _ in
-                                   self.user.isSendData = false
-                                }
-                            }
-                    }
+
                     
                 }.navigationTitle("患者アンケート")
                 .onAppear(){

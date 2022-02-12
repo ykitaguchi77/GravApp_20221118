@@ -1,4 +1,3 @@
-
 //
 //  Informations.swift
 //  CorneaApp
@@ -72,15 +71,6 @@ struct Informations: View {
                                         self.user.isSendData = false
                                         }
                                     .pickerStyle(SegmentedPickerStyle())
-                            }
-                        
-                            HStack{
-                                Text("自由記載欄")
-                                TextField("", text: $user.free_disease)
-                                    .keyboardType(.default)
-                            }.layoutPriority(1)
-                            .onChange(of: user.free_disease) { _ in
-                            self.user.isSendData = false
                             }
                         }
                     
@@ -160,6 +150,82 @@ struct Informations: View {
                                     .frame(minHeight: 30)
                             }
                         }
+                    
+                        Section(header: Text("Biometry"), footer: Text("")){
+                            HStack{
+                                Picker(selection: $user.aperture_R,
+                                       label: Text("瞼裂高右")) {
+                                    ForEach(5..<20){ len in
+                                        Text("\(len)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_R) { _ in
+                                   self.user.isSendData = false
+                                   }
+                                
+                                Picker(selection: $user.aperture_L,
+                                       label: Text("瞼裂高左")) {
+                                    ForEach(5..<20){ len in
+                                        Text("\(len)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_L) { _ in
+                                   self.user.isSendData = false
+                                }
+                            }
+                            HStack{
+                                Picker(selection: $user.hertel_R,
+                                       label: Text("Hertel右")) {
+                                    ForEach(5..<35){ year in
+                                        Text("\(year)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_R) { _ in
+                                   self.user.isSendData = false
+                                   }
+                                
+                                Picker(selection: $user.hertel_L,
+                                       label: Text("Hertel左")) {
+                                    ForEach(5..<35){ num in
+                                        Text("\(num)mm")
+                                    }
+                                }
+                               .onChange(of: user.hertel_L) { _ in
+                                   self.user.isSendData = false
+                                }
+                            }
+                        }
+                    
+                    
+                        Section(header: Text("Judgement"), footer: Text("")){
+
+                            HStack{
+                                Text("ステロイド療法？")
+                                Picker(selection: $user.selected_needSteroids,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.YesNo.count) {
+                                        Text(self.user.YesNo[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_needSteroids) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                        }
+                    
+                        Section(header: Text("自由記載欄"), footer: Text("")){
+                            HStack{
+                                Text("自由記載欄")
+                                TextField("", text: $user.free_disease)
+                                    .keyboardType(.default)
+                            }.layoutPriority(1)
+                            .onChange(of: user.free_disease) { _ in
+                            self.user.isSendData = false
+                            }
+                        }
+                    
                 }.navigationTitle("患者情報入力")
                 .onAppear(){
                  }
