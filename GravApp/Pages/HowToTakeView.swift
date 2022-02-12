@@ -10,7 +10,7 @@ import SwiftUI
 import CryptoKit
 import AVKit
 
-struct HowToTakeVideo: View {
+struct HowToTakeView: View {
     
     @ObservedObject var user: User
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -27,6 +27,7 @@ struct HowToTakeVideo: View {
             GeometryReader{bodyView in
                 VStack(spacing:0){
                     ScrollView{
+                        Group{
                         Text("撮影方法")
                             .font(.largeTitle)
                             .fontWeight(.black)
@@ -63,20 +64,30 @@ struct HowToTakeVideo: View {
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width)
 
-                        Image("1")
+                        Image("straight")
                             .resizable()
                             .scaledToFit()
                             .frame(width: bodyView.size.width)
                             .padding(.bottom)
-
-                        Text("⑤カメラを見たままで顔をグルグル")
+                        
+                        Text("⑤カメラを見たままで顔をゆっくりと回転")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width)
                         
-                        ZStack{
-                            startSlideShow()
+                        Image("rotate")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: bodyView.size.width)
+                            .padding(.bottom)
+                            
+                        Text("⑥3回顔を回したら撮影終了")
+                            .font(.title2)
+                            .multilineTextAlignment(.leading)
+                            .frame(width: bodyView.size.width)
+                            
                         }
+                        
 
 
                         Button(action: {

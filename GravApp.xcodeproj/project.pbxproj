@@ -25,7 +25,7 @@
 		BF60F2752766EA5700DD6253 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2742766EA5700DD6253 /* UIImageExtension.swift */; };
 		BF7DECC327999CB000DA5976 /* InterviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DECC227999CB000DA5976 /* InterviewPage.swift */; };
 		BFE83E3F27738A58001FEBDE /* MovieCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE83E3E27738A58001FEBDE /* MovieCropper.swift */; };
-		BFEE8B2527B7EEA70058F6C6 /* HowToTakeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE8B2427B7EEA70058F6C6 /* HowToTakeVideo.swift */; };
+		BFEE8B2527B7EEA70058F6C6 /* HowToTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,7 @@
 		BF60F2762766F2CE00DD6253 /* GravApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GravApp-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BF7DECC227999CB000DA5976 /* InterviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPage.swift; sourceTree = "<group>"; };
 		BFE83E3E27738A58001FEBDE /* MovieCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCropper.swift; sourceTree = "<group>"; };
-		BFEE8B2427B7EEA70058F6C6 /* HowToTakeVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToTakeVideo.swift; sourceTree = "<group>"; };
+		BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToTakeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,7 @@
 				BF60F2662766E74A00DD6253 /* InformationView.swift */,
 				BF60F26A2766E76B00DD6253 /* SavedDataView.swift */,
 				BF60F26C2766E77800DD6253 /* SendDataView.swift */,
-				BFEE8B2427B7EEA70058F6C6 /* HowToTakeVideo.swift */,
+				BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */,
 				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
 				BF60F2682766E75B00DD6253 /* Persistence.swift */,
 				BF60F24E2766E66000DD6253 /* GravApp.swift */,
@@ -217,7 +217,7 @@
 				BF60F2752766EA5700DD6253 /* UIImageExtension.swift in Sources */,
 				BF5356AE2794F06D004C4BF5 /* ScanButton.swift in Sources */,
 				BF60F26F2766E79D00DD6253 /* ImagePicker.swift in Sources */,
-				BFEE8B2527B7EEA70058F6C6 /* HowToTakeVideo.swift in Sources */,
+				BFEE8B2527B7EEA70058F6C6 /* HowToTakeView.swift in Sources */,
 				BF60F26B2766E76B00DD6253 /* SavedDataView.swift in Sources */,
 				BF60F24F2766E66000DD6253 /* GravApp.swift in Sources */,
 				BF60F2712766EA3000DD6253 /* ConstHolder.swift in Sources */,
