@@ -6,6 +6,11 @@
 //
 //写真Coredata参考サイト：https://tomato-develop.com/swiftui-camera-photo-library-core-data/
 //
+
+
+//hoWToTakeViewでカメラビューに移行する際にシートが消えない問題→ボタンを分ける実装wで
+
+
 import SwiftUI
 import CoreData
 

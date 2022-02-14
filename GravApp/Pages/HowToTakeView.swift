@@ -21,6 +21,8 @@ struct HowToTakeView: View {
     @State var isActionSheet = true
     @State var isImagePicker = true
     @State private var goTakePhoto: Bool = false  //撮影ボタン
+    private let player = AVPlayer(url: Bundle.main.url(forResource: "selfvideo", withExtension: "mp4")!)
+    
     
     var body: some View {
         NavigationView{
@@ -33,14 +35,14 @@ struct HowToTakeView: View {
                             .fontWeight(.black)
                             .padding(.bottom)
 
-                        Text("①画面上部にあるカメラを固視して、自撮り動画を撮影します")
+                        Text("①楕円形のガイドに顔の輪郭を合わせます")
                             .multilineTextAlignment(.leading)
                             .font(.title2)
                             .frame(width: bodyView.size.width)
                             .padding(.bottom)
 
 
-                        Text("②楕円形のガイドに顔の輪郭を合わせます")
+                        Text("②画面上部にあるカメラを固視します")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width)
@@ -88,12 +90,19 @@ struct HowToTakeView: View {
                             
                         }
                         
+                        
+                        ZStack{
+                            VideoPlayer(player: player).frame(width: bodyView.size.width, height:bodyView.size.width)
+                        }
+                        
+                        
 
 
                         Button(action: {
-                            self.goTakePhoto = true /*またはself.show.toggle() */
                             self.user.isSendData = false //撮影済みを解除
                             ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
+                            //self.presentationMode.wrappedValue.dismiss()
+                            self.goTakePhoto = true /*またはself.show.toggle() */
                         }) {
                             HStack{
                                 Image(systemName: "camera")
@@ -150,3 +159,6 @@ struct startSlideShow: UIViewRepresentable{
         print("updated!")
     }
 }
+
+
+
