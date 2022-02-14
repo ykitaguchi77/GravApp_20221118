@@ -21,7 +21,7 @@ struct HowToTakeView: View {
     @State var isActionSheet = true
     @State var isImagePicker = true
     @State private var goTakePhoto: Bool = false  //撮影ボタン
-    private let player = AVPlayer(url: Bundle.main.url(forResource: "selfvideo", withExtension: "mp4")!)
+    private let player = AVPlayer(url: Bundle.main.url(forResource: "Tutorial", withExtension: "mp4")!)
     
     
     var body: some View {
@@ -36,16 +36,14 @@ struct HowToTakeView: View {
                             .padding(.bottom)
 
                         Text("①楕円形のガイドに顔の輪郭を合わせます")
-                            .multilineTextAlignment(.leading)
                             .font(.title2)
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
 
 
-                        Text("②画面上部にあるカメラを固視します")
+                        Text("②画面上部にあるカメラを固視")
                             .font(.title2)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
 
                             //.padding(.bottom)
 
@@ -55,48 +53,34 @@ struct HowToTakeView: View {
                             .frame(width: bodyView.size.width)
                             .padding(.bottom)
 
-                        Text("③撮影ボタンを押します")
+                        Text("③撮影ボタンを押す")
                             .font(.title2)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
 
                         Text("④まずは正面視で")
                             .font(.title2)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: bodyView.size.width)
-
-                        Image("straight")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
-                        
-                        Text("⑤カメラを見たままで顔をゆっくりと回転")
+                            
+                        Text("⑤カメラを見たままで顔をゆっくりと回転させる")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
-                            .frame(width: bodyView.size.width)
-                        
-                        Image("rotate")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
                             
                         Text("⑥3回顔を回したら撮影終了")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
-                            .frame(width: bodyView.size.width)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                             
                         }
                         
-                        
+                        //Tutorial動画
                         ZStack{
                             VideoPlayer(player: player).frame(width: bodyView.size.width, height:bodyView.size.width)
                         }
                         
-                        
-
 
                         Button(action: {
                             self.user.isSendData = false //撮影済みを解除
@@ -125,39 +109,6 @@ struct HowToTakeView: View {
 
     }
 
-}
-
-var images: [UIImage]! = [UIImage(named:"1")!,
-                          UIImage(named:"1")!,
-                          UIImage(named:"1")!,
-                          UIImage(named:"2")!,
-                          UIImage(named:"3")!,
-                          UIImage(named:"4")!,
-                          UIImage(named:"5")!,
-                          UIImage(named:"6")!,
-                          UIImage(named:"7")!,
-                          UIImage(named:"8")!,
-                          UIImage(named:"9")!,
-                          UIImage(named:"10")!]
-                          
-let imageSlides = UIImage.animatedImage(with: images, duration: 2.0)
-            
-                          
-struct startSlideShow: UIViewRepresentable{
-    func makeUIView(context: Self.Context) -> UIView {
-        let width = UIScreen.main.bounds.size.width
-        let myView = UIView(frame: CGRect(x:0, y:0, width: width, height: width))
-        let myImage = UIImageView(frame: CGRect(x:0, y:0, width: width, height: width))
-        myImage.contentMode = UIView.ContentMode.scaleAspectFit
-        myImage.image = imageSlides
-        myView.addSubview(myImage)
-        
-        return myView
-    }
-    
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<startSlideShow>){
-        print("updated!")
-    }
 }
 
 
