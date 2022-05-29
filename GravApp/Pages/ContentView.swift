@@ -22,11 +22,10 @@ class User : ObservableObject {
     @Published var smokeNum: Int = 0
     @Published var id: String = ""
     @Published var hashid: String = ""
-    @Published var selected_side: Int = -1
     @Published var selected_gender: Int = -1
     @Published var selected_hospital: Int = 0
     @Published var selected_smoking: Int = -1
-    @Published var selected_disease: Int = -1
+    @Published var selected_severity: Int = -1
     @Published var selected_CAS_retroBulbarPain: Int = -1
     @Published var selected_CAS_gazePain: Int = -1
     @Published var selected_subj_lidSwelling: Int = -1
@@ -49,26 +48,26 @@ class User : ObservableObject {
     @Published var gender: [String] = ["男", "女"]
     @Published var YesNo: [String] = ["あり", "なし"]
     @Published var hospitals: [String] = ["", "オリンピア眼科病院", "大阪大"]
+    @Published var severity: [String] = ["なし", "軽症", "中等症〜"]
+
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
+    @Published var sourceType: UIImagePickerController.SourceType = .camera //撮影モードがデフォルト
+
     }
 
 
 struct ContentView: View {
     @ObservedObject var user = User()
-    //CoreDataの取り扱い
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.newdate, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+
     @State private var goTakePhoto: Bool = false  //撮影ボタン
     @State private var isPatientInfo: Bool = false  //患者情報入力ボタン
     @State private var goInterview: Bool = false  //問診ボタン
     @State private var goSendData: Bool = false  //送信ボタン
-    @State private var savedData: Bool = false  //送信ボタン
-    @State private var newPatient: Bool = false  //送信ボタン
+    @State private var uploadData: Bool = false  //アップロードボタン
+    @State private var newPatient: Bool = false  //新規患者ボタン
+    @State private var goSearch: Bool = false  //検索ボタン
     
     
     var body: some View {
@@ -122,48 +121,17 @@ struct ContentView: View {
             }
             
             
-            
-            Button(action: {
-                self.goTakePhoto = true /*またはself.show.toggle() */
-                self.user.isSendData = false //撮影済みを解除
-                ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
-            }) {
-                HStack{
-                    Image(systemName: "camera")
-                    Text("撮影")
-                }
-                    .foregroundColor(Color.white)
-                    .font(Font.largeTitle)
-            }
-                .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
-                .background(Color.black)
-                .padding()
-            .sheet(isPresented: self.$goTakePhoto) {
-                HowToTakeView(user: user)
-            }
-            
-
-            //送信するとボタンの色が変わる演出
-            if self.user.isSendData {
-                Button(action: {self.goSendData = true /*またはself.show.toggle() */}) {
+            HStack{
+                
+                
+                Button(action: {
+                    self.goTakePhoto = true /*またはself.show.toggle() */
+                    self.user.isSendData = false //撮影済みを解除
+                    ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
+                }) {
                     HStack{
-                        Image(systemName: "square.and.arrow.up")
-                        Text("送信済み")
-                    }
-                        .foregroundColor(Color.white)
-                        .font(Font.largeTitle)
-                }
-                    .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
-                    .background(Color.blue)
-                    .padding()
-                .sheet(isPresented: self.$goSendData) {
-                    SendData(user: user)
-                }
-            } else {
-                Button(action: { self.goSendData = true /*またはself.show.toggle() */ }) {
-                    HStack{
-                        Image(systemName: "square.and.arrow.up")
-                        Text("送信")
+                        Image(systemName: "camera")
+                        Text("撮影")
                     }
                         .foregroundColor(Color.white)
                         .font(Font.largeTitle)
@@ -171,27 +139,68 @@ struct ContentView: View {
                     .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
                     .background(Color.black)
                     .padding()
-                .sheet(isPresented: self.$goSendData) {
-                    SendData(user: user)
+                .sheet(isPresented: self.$goTakePhoto) {
+                    HowToTakeView(user: user)
+                }
+                
+
+                //送信するとボタンの色が変わる演出
+                if self.user.isSendData {
+                    Button(action: {self.goSendData = true /*またはself.show.toggle() */}) {
+                        HStack{
+                            Image(systemName: "square.and.arrow.up")
+                            Text("送信済み")
+                        }
+                            .foregroundColor(Color.white)
+                            .font(Font.largeTitle)
+                    }
+                        .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                        .background(Color.blue)
+                        .padding()
+                    .sheet(isPresented: self.$goSendData) {
+                        SendData(user: user)
+                    }
+                } else {
+                    Button(action: { self.goSendData = true /*またはself.show.toggle() */ }) {
+                        HStack{
+                            Image(systemName: "square.and.arrow.up")
+                            Text("送信")
+                        }
+                            .foregroundColor(Color.white)
+                            .font(Font.largeTitle)
+                    }
+                        .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                        .background(Color.black)
+                        .padding()
+                    .sheet(isPresented: self.$goSendData) {
+                        SendData(user: user)
+                    }
                 }
             }
             
-            HStack{
-            Button(action: { self.savedData = true /*またはself.show.toggle() */ }) {
-                HStack{
-                    Image(systemName: "folder")
-                    Text("リスト")
-                }
-                    .foregroundColor(Color.white)
-                    .font(Font.largeTitle)
-            }
-                .frame(minWidth:0, maxWidth:200, minHeight: 75)
-                .background(Color.black)
-                .padding()
-            .sheet(isPresented: self.$savedData) {
-                SavedData(user: user)
-            }
+            HStack(spacing:-10){
             
+            Button(action: {
+                 self.user.sourceType = UIImagePickerController.SourceType.photoLibrary
+                 self.user.isSendData = false //撮影済みを解除
+                 self.uploadData = true /*またはself.show.toggle() */
+                 
+             }) {
+                 HStack{
+                     Image(systemName: "folder")
+                     Text("Up")
+                 }
+                     .foregroundColor(Color.white)
+                     .font(Font.largeTitle)
+             }
+                 .frame(minWidth:0, maxWidth:200, minHeight: 75)
+                 .background(Color.black)
+                 .padding()
+             .sheet(isPresented: self.$uploadData) {
+                 CameraPage(user: user)
+             }
+                
+                
             Button(action: { self.newPatient = true /*またはself.show.toggle() */ }) {
                 HStack{
                     Image(systemName: "stop.circle")
@@ -216,6 +225,21 @@ struct ContentView: View {
                 .frame(minWidth:0, maxWidth:200, minHeight: 75)
                 .background(Color.black)
                 .padding()
+            }
+            
+            Button(action: {self.goSearch = true /*またはself.show.toggle() */}) {
+                HStack{
+                    Image(systemName: "applepencil")
+                    Text("修正")
+                }
+                    .foregroundColor(Color.white)
+                    .font(Font.largeTitle)
+            }
+                .frame(minWidth:0, maxWidth:160, minHeight: 75)
+                .background(Color.black)
+                .padding()
+            .sheet(isPresented: self.$goSearch) {
+                //Search(user: user)
             }
         }
     }

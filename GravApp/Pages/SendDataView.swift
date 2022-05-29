@@ -90,7 +90,6 @@ struct SendData: View {
             } else{
                 Button(action: {
                 showingAlert = false
-                SetCoreData(context: viewContext)
                 SaveToResultHolder()
                 //SendDataset()
                 SaveToDoc()
@@ -119,7 +118,7 @@ struct SendData: View {
     //ResultHolderにテキストデータを格納
     public func SaveToResultHolder(){
         //var imagenum: String = String(user.imageNum)
-        ResultHolder.GetInstance().SetAnswer(q1: self.stringDate(), q2: user.hashid, q3: user.id, q4: self.numToString(num: self.user.imageNum), q5: self.user.hospitals[user.selected_hospital], q6: user.free_disease)
+        ResultHolder.GetInstance().SetAnswer(q1: self.stringDate(), q2: user.hashid, q3: user.id, q4: self.numToString(num: self.user.imageNum), q5: self.user.hospitals[user.selected_hospital], q6: user.free_disease, q7: self.numToString(num:user.age), q8: self.user.gender[user.selected_gender], q9: self.user.YesNo[user.selected_CAS_lidErythema], q10: self.user.YesNo[user.selected_CAS_lidSwelling], q11: self.user.YesNo[user.selected_CAS_conjRedness], q12: self.user.YesNo[user.selected_CAS_conjChemosis], q13: self.user.YesNo[user.selected_CAS_caruncularRedness], q14: self.numToString(num:user.aperture_R), q15: self.numToString(num:user.aperture_L), q16: self.numToString(num:user.hertel_R), q17: self.numToString(num:user.hertel_L), q18: self.user.severity[user.selected_severity], q19: self.user.YesNo[user.selected_needSteroids], q20: self.user.YesNo[user.selected_smoking], q21: self.numToString(num:user.smokeYear), q22: self.numToString(num:user.smokeNum), q23: self.user.YesNo[user.selected_CAS_retroBulbarPain], q24: self.user.YesNo[user.selected_CAS_gazePain], q25: self.user.YesNo[user.selected_subj_lidSwelling], q26: self.user.YesNo[user.selected_subj_blurredVision], q27: self.user.YesNo[user.selected_subj_primaryDiplopia], q28: self.user.YesNo[user.selected_subj_periDiplopia])
     }
     
     public func stringDate()->String{
@@ -133,35 +132,6 @@ struct SendData: View {
         let string: String = String(num)
         return string
     }
-
-    
-    
-    
-    public func SetCoreData(context: NSManagedObjectContext){
-        let newItem = Item(context: viewContext)
-        newItem.newdate = self.user.date
-        newItem.newid = self.user.id
-        newItem.newimagenum = numToString(num: self.user.imageNum)
-        newItem.newhospitals = self.user.hospitals[user.selected_hospital]
-        newItem.newfreedisease = self.user.free_disease
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateStyle = .medium
-        dateFormatter.dateFormat = "yyyyMMdd"
-        
-        //newdateid: 20211204-11223344-3
-        newItem.newdateid = "\(dateFormatter.string(from:self.user.date))-\(self.user.id)-\(self.user.imageNum)"
-        let dateid = Data(newItem.newdateid!.utf8)
-        let hashid = SHA256.hash(data: dateid)
-        
-        user.hashid = hashid.compactMap { String(format: "%02x", $0) }.joined()
-        print(self.user.hashid)
-        newItem.newhashid = self.user.hashid
-        
-        try! context.save()
-        self.user.isNewData = true
-        }
 
 
     //private func saveToDoc (image: UIImage, fileName: String ) -> Bool{

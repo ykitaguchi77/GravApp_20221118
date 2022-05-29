@@ -152,53 +152,66 @@ struct Informations: View {
                         }
                     
                         Section(header: Text("Biometry"), footer: Text("")){
-                            HStack{
-                                Picker(selection: $user.aperture_R,
-                                       label: Text("瞼裂高右")) {
-                                    ForEach(5..<20){ len in
-                                        Text("\(len)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_R) { _ in
-                                   self.user.isSendData = false
-                                   }
-                                
-                                Picker(selection: $user.aperture_L,
-                                       label: Text("瞼裂高左")) {
-                                    ForEach(5..<20){ len in
-                                        Text("\(len)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_L) { _ in
-                                   self.user.isSendData = false
+                            Picker(selection: $user.aperture_R,
+                                   label: Text("瞼裂高右")) {
+                                ForEach(5..<20){ len1 in
+                                    Text("\(len1)mm")
                                 }
                             }
-                            HStack{
-                                Picker(selection: $user.hertel_R,
-                                       label: Text("Hertel右")) {
-                                    ForEach(5..<35){ year in
-                                        Text("\(year)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_R) { _ in
-                                   self.user.isSendData = false
-                                   }
-                                
-                                Picker(selection: $user.hertel_L,
-                                       label: Text("Hertel左")) {
-                                    ForEach(5..<35){ num in
-                                        Text("\(num)mm")
-                                    }
-                                }
-                               .onChange(of: user.hertel_L) { _ in
-                                   self.user.isSendData = false
+                           .onChange(of: user.hertel_R) { _ in
+                               self.user.isSendData = false
+                               }
+                            
+                            Picker(selection: $user.aperture_L,
+                                   label: Text("瞼裂高左")) {
+                                ForEach(5..<20){ len2 in
+                                    Text("\(len2)mm")
                                 }
                             }
+                           .onChange(of: user.hertel_L) { _ in
+                               self.user.isSendData = false
+                            }
+                        
+                     
+                            Picker(selection: $user.hertel_R,
+                                   label: Text("Hertel右")) {
+                                ForEach(5..<35){ num1 in
+                                    Text("\(num1)mm")
+                                }
+                            }
+                           .onChange(of: user.hertel_R) { _ in
+                               self.user.isSendData = false
+                               }
+                            
+                            Picker(selection: $user.hertel_L,
+                                   label: Text("Hertel左")) {
+                                ForEach(5..<35){ num2 in
+                                    Text("\(num2)mm")
+                                }
+                            }
+                           .onChange(of: user.hertel_L) { _ in
+                               self.user.isSendData = false
+                            }
+                    
                         }
                     
                     
                         Section(header: Text("Judgement"), footer: Text("")){
-
+                            HStack{
+                                Text("重症度？")
+                                Picker(selection: $user.selected_severity,
+                                           label: Text("YesNo")) {
+                                    ForEach(0..<user.severity.count) {
+                                        Text(self.user.severity[$0])
+                                            }
+                                    }
+                                    .onChange(of: user.selected_severity) {_ in
+                                        self.user.isSendData = false
+                                        }
+                                    .pickerStyle(SegmentedPickerStyle())
+                                    .frame(minHeight: 30)
+                            }
+                            
                             HStack{
                                 Text("ステロイド療法？")
                                 Picker(selection: $user.selected_needSteroids,
