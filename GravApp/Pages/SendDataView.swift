@@ -13,14 +13,12 @@
 
 
 import SwiftUI
-import CoreData
 import CryptoKit
 import AVKit
 
 struct SendData: View {
     @ObservedObject var user: User
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.managedObjectContext) var viewContext
     @State private var showingAlert: Bool = false
     
     //private let player = AVPlayer(url: URL(string:ResultHolder.GetInstance().GetMovieUrls())!)
@@ -90,6 +88,7 @@ struct SendData: View {
             } else{
                 Button(action: {
                 showingAlert = false
+                    GenerateHashID()
                 SaveToResultHolder()
                 //SendDataset()
                 SaveToDoc()
@@ -112,8 +111,19 @@ struct SendData: View {
         }
     }
             
-    
-
+    public func GenerateHashID(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        //newdateid: 20211204-11223344-3
+        let newdateid = "\(dateFormatter.string(from:self.user.date))-\(self.user.id)-\(self.user.imageNum)"
+        let dateid = Data(newdateid.utf8)
+        let hashid = SHA256.hash(data: dateid)
+        user.hashid = hashid.compactMap { String(format: "%02x", $0) }.joined()
+        print(user.hashid)
+    }
     
     //ResultHolderにテキストデータを格納
     public func SaveToResultHolder(){

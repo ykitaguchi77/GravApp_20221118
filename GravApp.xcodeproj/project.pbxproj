@@ -14,10 +14,8 @@
 		BF60F2512766E66000DD6253 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2502766E66000DD6253 /* ContentView.swift */; };
 		BF60F2532766E66200DD6253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF60F2522766E66200DD6253 /* Assets.xcassets */; };
 		BF60F2562766E66200DD6253 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF60F2552766E66200DD6253 /* Preview Assets.xcassets */; };
-		BF60F25B2766E66200DD6253 /* GravApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2592766E66200DD6253 /* GravApp.xcdatamodeld */; };
 		BF60F2652766E72A00DD6253 /* CameraPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2642766E72A00DD6253 /* CameraPage.swift */; };
 		BF60F2672766E74A00DD6253 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2662766E74A00DD6253 /* InformationView.swift */; };
-		BF60F2692766E75B00DD6253 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2682766E75B00DD6253 /* Persistence.swift */; };
 		BF60F26D2766E77800DD6253 /* SendDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F26C2766E77800DD6253 /* SendDataView.swift */; };
 		BF60F26F2766E79D00DD6253 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F26E2766E79D00DD6253 /* ImagePicker.swift */; };
 		BF60F2712766EA3000DD6253 /* ConstHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2702766EA3000DD6253 /* ConstHolder.swift */; };
@@ -37,10 +35,8 @@
 		BF60F2502766E66000DD6253 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF60F2522766E66200DD6253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF60F2552766E66200DD6253 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BF60F25A2766E66200DD6253 /* CorneaApp_newer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CorneaApp_newer.xcdatamodel; sourceTree = "<group>"; };
 		BF60F2642766E72A00DD6253 /* CameraPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPage.swift; sourceTree = "<group>"; };
 		BF60F2662766E74A00DD6253 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
-		BF60F2682766E75B00DD6253 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BF60F26C2766E77800DD6253 /* SendDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataView.swift; sourceTree = "<group>"; };
 		BF60F26E2766E79D00DD6253 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BF60F2702766EA3000DD6253 /* ConstHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstHolder.swift; sourceTree = "<group>"; };
@@ -88,7 +84,6 @@
 				BF60F2632766E71200DD6253 /* Pages */,
 				BF60F2622766E6FB00DD6253 /* Extension */,
 				BF60F2522766E66200DD6253 /* Assets.xcassets */,
-				BF60F2592766E66200DD6253 /* GravApp.xcdatamodeld */,
 				BF60F2542766E66200DD6253 /* Preview Content */,
 			);
 			path = GravApp;
@@ -125,7 +120,6 @@
 				BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */,
 				BF4A63B027BA126800F41393 /* Tutorial.mp4 */,
 				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
-				BF60F2682766E75B00DD6253 /* Persistence.swift */,
 				BF60F24E2766E66000DD6253 /* GravApp.swift */,
 				BFA772862843932B0089F96D /* SearchView.swift */,
 			);
@@ -210,9 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF60F26D2766E77800DD6253 /* SendDataView.swift in Sources */,
-				BF60F25B2766E66200DD6253 /* GravApp.xcdatamodeld in Sources */,
 				BF60F2512766E66000DD6253 /* ContentView.swift in Sources */,
-				BF60F2692766E75B00DD6253 /* Persistence.swift in Sources */,
 				BF7DECC327999CB000DA5976 /* InterviewPage.swift in Sources */,
 				BFE83E3F27738A58001FEBDE /* MovieCropper.swift in Sources */,
 				BF60F2672766E74A00DD6253 /* InformationView.swift in Sources */,
@@ -468,19 +460,6 @@
 			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		BF60F2592766E66200DD6253 /* GravApp.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BF60F25A2766E66200DD6253 /* CorneaApp_newer.xcdatamodel */,
-			);
-			currentVersion = BF60F25A2766E66200DD6253 /* CorneaApp_newer.xcdatamodel */;
-			path = GravApp.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = BF60F2432766E66000DD6253 /* Project object */;
 }

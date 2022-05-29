@@ -24,35 +24,59 @@ struct Imagepicker : UIViewControllerRepresentable {
     @State private var shutter: Bool = false
     
     var sourceType:UIImagePickerController.SourceType
+    var equipmentVideo:Bool
  
     func makeCoordinator() -> Imagepicker.Coodinator {
         
         return Imagepicker.Coordinator(parent: self)
     }
-      
+    
     func makeUIViewController(context: UIViewControllerRepresentableContext<Imagepicker>) -> UIImagePickerController {
-        
         let controller = UIImagePickerController()
-        controller.sourceType = sourceType
-        controller.delegate = context.coordinator
-        
-        //photo, movieモード選択
-        controller.mediaTypes = ["public.image", "public.movie"]
-        //controller.mediaTypes = ["public.image"]
-        controller.cameraCaptureMode = .photo // Default media type .photo vs .video
-        controller.videoQuality = .typeHigh
-        controller.cameraFlashMode = .on
-        controller.cameraDevice = .rear //or front
-        controller.allowsEditing = false
-        
-        //overlay image
-        let screenWidth = UIScreen.main.bounds.size.width
-        //controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
-        
-        controller.cameraOverlayView = MergeView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*1.5))  //screenheightで定義すると、use_imageに描画が重なってしまいボタンが押せなくなるため小さくした
-        
+        if self.sourceType == .camera{
+            controller.sourceType = sourceType
+            controller.delegate = context.coordinator
+            //photo, movieモード選択
+            //controller.mediaTypes = ["public.image", "public.movie"]
+            //controller.mediaTypes = ["public.image"]
+            //controller.cameraCaptureMode = .video // Default media type .photo vs .video
+            controller.videoQuality = .typeHigh
+            controller.cameraFlashMode = .on
+            controller.cameraDevice = .rear //or front
+            controller.allowsEditing = false
+            let screenWidth = UIScreen.main.bounds.size.width
+            //overlay image
+            //controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
+            switch equipmentVideo{
+            case true:
+                controller.mediaTypes = ["public.movie"]
+                controller.cameraCaptureMode = .video
+                //overlay image
+                let screenWidth = UIScreen.main.bounds.size.width
+                //controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
+                
+                controller.cameraOverlayView = MergeView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*1.5))  //screenheightで定義すると、use_imageに描画が重なってしまいボタンが押せなくなるため小さくした
+                
+            case false:
+                controller.mediaTypes = ["public.image"]
+                controller.cameraCaptureMode = .photo
+                //overlay image
+                let screenWidth = UIScreen.main.bounds.size.width
+                //controller.cameraOverlayView = CircleView(frame: CGRect(x: (screenWidth / 2) - 50, y: (screenWidth / 2) + 25, width: 100, height: 100))
+                
+                controller.cameraOverlayView = MergeView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth*1.5))  //screenheightで定義すると、use_imageに描画が重なってしまいボタンが押せなくなるため小さくした
+                
+            }
+        }
+        else if self.sourceType == .photoLibrary{
+            controller.sourceType = sourceType
+            controller.delegate = context.coordinator
+            controller.mediaTypes = ["public.image", "public.movie"]
+        }
         return controller
     }
+    
+  
     
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<Imagepicker>) {
     }

@@ -10,7 +10,6 @@ import SwiftUI
 struct GravInterview: View {
     @ObservedObject var user: User
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.managedObjectContext) private var viewContext
     @State var isSaved = false
     @State private var questionCompleted: Bool = false  //問診完了
     @State private var goTakePhoto: Bool = false  //撮影ボタン

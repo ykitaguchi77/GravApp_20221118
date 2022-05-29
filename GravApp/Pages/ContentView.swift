@@ -22,38 +22,40 @@ class User : ObservableObject {
     @Published var smokeNum: Int = 0
     @Published var id: String = ""
     @Published var hashid: String = ""
-    @Published var selected_gender: Int = -1
+    @Published var selected_gender: Int = 0
     @Published var selected_hospital: Int = 0
-    @Published var selected_smoking: Int = -1
-    @Published var selected_severity: Int = -1
-    @Published var selected_CAS_retroBulbarPain: Int = -1
-    @Published var selected_CAS_gazePain: Int = -1
-    @Published var selected_subj_lidSwelling: Int = -1
-    @Published var selected_subj_blurredVision: Int = -1
-    @Published var selected_subj_primaryDiplopia: Int = -1
-    @Published var selected_subj_periDiplopia: Int = -1
+    @Published var selected_smoking: Int = 0
+    @Published var selected_severity: Int = 0
+    @Published var selected_CAS_retroBulbarPain: Int = 0
+    @Published var selected_CAS_gazePain: Int = 0
+    @Published var selected_subj_lidSwelling: Int = 0
+    @Published var selected_subj_blurredVision: Int = 0
+    @Published var selected_subj_primaryDiplopia: Int = 0
+    @Published var selected_subj_periDiplopia: Int = 0
     
-    @Published var selected_CAS_lidSwelling: Int = -1
-    @Published var selected_CAS_lidErythema: Int = -1
-    @Published var selected_CAS_conjRedness: Int = -1
-    @Published var selected_CAS_conjChemosis: Int = -1
-    @Published var selected_CAS_caruncularRedness: Int = -1
+    @Published var selected_CAS_lidSwelling: Int = 0
+    @Published var selected_CAS_lidErythema: Int = 0
+    @Published var selected_CAS_conjRedness: Int = 0
+    @Published var selected_CAS_conjChemosis: Int = 0
+    @Published var selected_CAS_caruncularRedness: Int = 0
     @Published var hertel_R: Int = -1
     @Published var hertel_L: Int = -1
     @Published var aperture_R: Int = -1
     @Published var aperture_L: Int = -1
-    @Published var selected_needSteroids: Int = -1
+    @Published var selected_needSteroids: Int = 0
 
     @Published var free_disease: String = ""
-    @Published var gender: [String] = ["男", "女"]
-    @Published var YesNo: [String] = ["あり", "なし"]
+    @Published var gender: [String] = ["", "男", "女"]
+    @Published var YesNo: [String] = ["", "あり", "なし"]
     @Published var hospitals: [String] = ["", "オリンピア眼科病院", "大阪大"]
-    @Published var severity: [String] = ["なし", "軽症", "中等症〜"]
+    @Published var severity: [String] = ["", "眼症なし", "軽症", "中等症〜"]
 
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
     @Published var sourceType: UIImagePickerController.SourceType = .camera //撮影モードがデフォルト
+    @Published var equipmentVideo: Bool = true //video or camera 撮影画面のマージ指標変更のため
+
 
     }
 
@@ -125,6 +127,8 @@ struct ContentView: View {
                 
                 
                 Button(action: {
+                    self.user.sourceType = UIImagePickerController.SourceType.camera
+                    self.user.equipmentVideo = true
                     self.goTakePhoto = true /*またはself.show.toggle() */
                     self.user.isSendData = false //撮影済みを解除
                     ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
@@ -140,7 +144,7 @@ struct ContentView: View {
                     .background(Color.black)
                     .padding()
                 .sheet(isPresented: self.$goTakePhoto) {
-                    HowToTakeView(user: user)
+                    CameraPage(user: user)
                 }
                 
 
