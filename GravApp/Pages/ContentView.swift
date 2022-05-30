@@ -243,7 +243,7 @@ struct ContentView: View {
                 .background(Color.black)
                 .padding()
             .sheet(isPresented: self.$goSearch) {
-                //Search(user: user)
+                Search(user: user)
             }
         }
     }

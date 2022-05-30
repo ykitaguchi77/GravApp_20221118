@@ -87,7 +87,7 @@ struct Search: View {
                                         user.selected_hospital = user.hospitals.firstIndex(where: { $0 == items[idx].pq5})!
                                         user.free_disease = items[idx].pq6
                                         user.age = Int(items[idx].pq7)!
-                                        user.selected_gender = user.hospitals.firstIndex(where: { $0 == items[idx].pq8})!
+                                        user.selected_gender = user.gender.firstIndex(where: { $0 == items[idx].pq8})!
                                         user.selected_CAS_lidErythema = user.YesNo.firstIndex(where: { $0 == items[idx].pq9})!
                                         user.selected_CAS_lidSwelling = user.YesNo.firstIndex(where: { $0 == items[idx].pq10})!
                                         user.selected_CAS_conjRedness = user.YesNo.firstIndex(where: { $0 == items[idx].pq11})!
