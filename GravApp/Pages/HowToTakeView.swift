@@ -63,17 +63,26 @@ struct HowToTakeView: View {
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
                             
-                        Text("⑤カメラを見たままで顔をゆっくりと回転させる")
+                        Text("⑤上方視→下方視")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
                             
-                        Text("⑥3回顔を回したら撮影終了")
+                        Text("⑥右方視→左方視")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width, alignment: .leading)
                             
+                        Text("⑦目を見開く")
+                            .font(.title2)
+                            .multilineTextAlignment(.leading)
+                            .frame(width: bodyView.size.width, alignment: .leading)
+                            
+                        Text("⑧撮影終了ボタンを押す")
+                            .font(.title2)
+                            .multilineTextAlignment(.leading)
+                            .frame(width: bodyView.size.width, alignment: .leading)
                         }
                         
                         //Tutorial動画

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BF060B1D277071A700FA9450 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BF060B1C277071A700FA9450 /* FirebaseAnalytics */; };
-		BF4A63B127BA126800F41393 /* Tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BF4A63B027BA126800F41393 /* Tutorial.mp4 */; };
 		BF5356AE2794F06D004C4BF5 /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5356AD2794F06D004C4BF5 /* ScanButton.swift */; };
 		BF60F24F2766E66000DD6253 /* GravApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F24E2766E66000DD6253 /* GravApp.swift */; };
 		BF60F2512766E66000DD6253 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2502766E66000DD6253 /* ContentView.swift */; };
@@ -21,6 +20,7 @@
 		BF60F2712766EA3000DD6253 /* ConstHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2702766EA3000DD6253 /* ConstHolder.swift */; };
 		BF60F2732766EA4000DD6253 /* ResultHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2722766EA4000DD6253 /* ResultHolder.swift */; };
 		BF60F2752766EA5700DD6253 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2742766EA5700DD6253 /* UIImageExtension.swift */; };
+		BF7807772856472F00DB90B9 /* Tutorial.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BF7807762856472F00DB90B9 /* Tutorial.mp4 */; };
 		BF7DECC327999CB000DA5976 /* InterviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DECC227999CB000DA5976 /* InterviewPage.swift */; };
 		BFA772872843932B0089F96D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA772862843932B0089F96D /* SearchView.swift */; };
 		BFE83E3F27738A58001FEBDE /* MovieCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE83E3E27738A58001FEBDE /* MovieCropper.swift */; };
@@ -28,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BF4A63B027BA126800F41393 /* Tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tutorial.mp4; sourceTree = "<group>"; };
 		BF5356AD2794F06D004C4BF5 /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
 		BF60F24B2766E66000DD6253 /* GravApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF60F24E2766E66000DD6253 /* GravApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravApp.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		BF60F2722766EA4000DD6253 /* ResultHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHolder.swift; sourceTree = "<group>"; };
 		BF60F2742766EA5700DD6253 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		BF60F2762766F2CE00DD6253 /* GravApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GravApp-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BF7807762856472F00DB90B9 /* Tutorial.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tutorial.mp4; sourceTree = "<group>"; };
 		BF7DECC227999CB000DA5976 /* InterviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewPage.swift; sourceTree = "<group>"; };
 		BFA772862843932B0089F96D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BFE83E3E27738A58001FEBDE /* MovieCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCropper.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				BF60F2662766E74A00DD6253 /* InformationView.swift */,
 				BF60F26C2766E77800DD6253 /* SendDataView.swift */,
 				BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */,
-				BF4A63B027BA126800F41393 /* Tutorial.mp4 */,
+				BF7807762856472F00DB90B9 /* Tutorial.mp4 */,
 				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
 				BF60F24E2766E66000DD6253 /* GravApp.swift */,
 				BFA772862843932B0089F96D /* SearchView.swift */,
@@ -192,7 +192,7 @@
 			files = (
 				BF60F2562766E66200DD6253 /* Preview Assets.xcassets in Resources */,
 				BF60F2532766E66200DD6253 /* Assets.xcassets in Resources */,
-				BF4A63B127BA126800F41393 /* Tutorial.mp4 in Resources */,
+				BF7807772856472F00DB90B9 /* Tutorial.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

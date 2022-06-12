@@ -144,7 +144,7 @@ struct ContentView: View {
                     .background(Color.black)
                     .padding()
                 .sheet(isPresented: self.$goTakePhoto) {
-                    CameraPage(user: user)
+                    HowToTakeView(user: user)
                 }
                 
 

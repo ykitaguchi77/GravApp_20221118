@@ -41,8 +41,8 @@ struct Imagepicker : UIViewControllerRepresentable {
             //controller.mediaTypes = ["public.image"]
             //controller.cameraCaptureMode = .video // Default media type .photo vs .video
             controller.videoQuality = .typeHigh
-            controller.cameraFlashMode = .on
-            controller.cameraDevice = .rear //or front
+            controller.cameraFlashMode = .off
+            controller.cameraDevice = .front //or rear
             controller.allowsEditing = false
             let screenWidth = UIScreen.main.bounds.size.width
             //overlay image
