@@ -16,7 +16,7 @@ struct Search: View {
     @State private var showingAlert = false
     @State private var orderOfDate = true //trueなら日付順、falseならID順
     @State private var items =  SearchModel.GetInstance().getJson()
-
+    @State private var tapidx: Int = 0
     
     var body: some View {
         
@@ -68,6 +68,7 @@ struct Search: View {
                             Text("Load")  //Loadボタン
                                 .onTapGesture {
                                     self.showingAlert.toggle()
+                                    tapidx = idx //タップした番号を記録
                                 }
                                 .frame(minWidth:0, maxWidth:bodyView.size.width/4, minHeight: 40)
                                 .foregroundColor(Color.white)
@@ -79,35 +80,35 @@ struct Search: View {
                                         dateFormatter.dateFormat = "yyyyMMdd"
                                         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                                         dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-                                        let date = dateFormatter.date(from: items[idx].pq1)
+                                        let date = dateFormatter.date(from: items[tapidx].pq1)
                                         user.date = date!
-                                        user.hashid = items[idx].pq2
-                                        user.id = items[idx].pq3
-                                        user.imageNum = Int(items[idx].pq4)!
-                                        user.selected_hospital = user.hospitals.firstIndex(where: { $0 == items[idx].pq5})!
-                                        user.free_disease = items[idx].pq6
-                                        user.age = Int(items[idx].pq7)!
-                                        user.selected_gender = user.gender.firstIndex(where: { $0 == items[idx].pq8})!
-                                        user.selected_CAS_lidErythema = user.YesNo.firstIndex(where: { $0 == items[idx].pq9})!
-                                        user.selected_CAS_lidSwelling = user.YesNo.firstIndex(where: { $0 == items[idx].pq10})!
-                                        user.selected_CAS_conjRedness = user.YesNo.firstIndex(where: { $0 == items[idx].pq11})!
-                                        user.selected_CAS_conjChemosis = user.YesNo.firstIndex(where: { $0 == items[idx].pq12})!
-                                        user.selected_CAS_caruncularRedness = user.YesNo.firstIndex(where: { $0 == items[idx].pq13})!
-                                        user.aperture_R = Int(items[idx].pq14)!
-                                        user.aperture_L = Int(items[idx].pq15)!
-                                        user.hertel_R = Int(items[idx].pq16)!
-                                        user.hertel_L = Int(items[idx].pq17)!
-                                        user.selected_severity = user.severity.firstIndex(where: { $0 == items[idx].pq18})!
-                                        user.selected_needSteroids = user.YesNo.firstIndex(where: { $0 == items[idx].pq19})!
-                                        user.selected_smoking = user.YesNo.firstIndex(where: { $0 == items[idx].pq20})!
-                                        user.smokeYear = Int(items[idx].pq21)!
-                                        user.smokeNum = Int(items[idx].pq22)!
-                                        user.selected_CAS_retroBulbarPain = user.YesNo.firstIndex(where: { $0 == items[idx].pq23})!
-                                        user.selected_CAS_gazePain = user.YesNo.firstIndex(where: { $0 == items[idx].pq24})!
-                                        user.selected_subj_lidSwelling = user.YesNo.firstIndex(where: { $0 == items[idx].pq25})!
-                                        user.selected_subj_blurredVision = user.YesNo.firstIndex(where: { $0 == items[idx].pq26})!
-                                        user.selected_subj_primaryDiplopia = user.YesNo.firstIndex(where: { $0 == items[idx].pq27})!
-                                        user.selected_subj_periDiplopia = user.YesNo.firstIndex(where: { $0 == items[idx].pq28})!
+                                        user.hashid = items[tapidx].pq2
+                                        user.id = items[tapidx].pq3
+                                        user.imageNum = Int(items[tapidx].pq4)!
+                                        user.selected_hospital = user.hospitals.firstIndex(where: { $0 == items[tapidx].pq5})!
+                                        user.free_disease = items[tapidx].pq6
+                                        user.age = Int(items[tapidx].pq7)!
+                                        user.selected_gender = user.gender.firstIndex(where: { $0 == items[tapidx].pq8})!
+                                        user.selected_CAS_lidErythema = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq9})!
+                                        user.selected_CAS_lidSwelling = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq10})!
+                                        user.selected_CAS_conjRedness = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq11})!
+                                        user.selected_CAS_conjChemosis = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq12})!
+                                        user.selected_CAS_caruncularRedness = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq13})!
+                                        user.aperture_R = Int(items[tapidx].pq14)!
+                                        user.aperture_L = Int(items[tapidx].pq15)!
+                                        user.hertel_R = Int(items[tapidx].pq16)!
+                                        user.hertel_L = Int(items[tapidx].pq17)!
+                                        user.selected_severity = user.severity.firstIndex(where: { $0 == items[tapidx].pq18})!
+                                        user.selected_needSteroids = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq19})!
+                                        user.selected_smoking = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq20})!
+                                        user.smokeYear = Int(items[tapidx].pq21)!
+                                        user.smokeNum = Int(items[tapidx].pq22)!
+                                        user.selected_CAS_retroBulbarPain = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq23})!
+                                        user.selected_CAS_gazePain = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq24})!
+                                        user.selected_subj_lidSwelling = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq25})!
+                                        user.selected_subj_blurredVision = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq26})!
+                                        user.selected_subj_primaryDiplopia = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq27})!
+                                        user.selected_subj_periDiplopia = user.YesNo.firstIndex(where: { $0 == items[tapidx].pq28})!
                                        
                                         LoadImages(name: self.user.hashid) //imageNameはJOIR準拠の命名。画像をresultHolderに格納。
                                         self.user.isSendData = false //撮影済みを解除
