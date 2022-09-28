@@ -153,7 +153,7 @@ struct Informations: View {
                         Section(header: Text("Biometry"), footer: Text("")){
                             Picker(selection: $user.aperture_R,
                                    label: Text("瞼裂高右")) {
-                                ForEach(5..<20){ len1 in
+                                ForEach(0..<20){ len1 in
                                     Text("\(len1)mm")
                                 }
                             }
@@ -163,7 +163,7 @@ struct Informations: View {
                             
                             Picker(selection: $user.aperture_L,
                                    label: Text("瞼裂高左")) {
-                                ForEach(5..<20){ len2 in
+                                ForEach(0..<20){ len2 in
                                     Text("\(len2)mm")
                                 }
                             }
@@ -174,7 +174,7 @@ struct Informations: View {
                      
                             Picker(selection: $user.hertel_R,
                                    label: Text("Hertel右")) {
-                                ForEach(5..<35){ num1 in
+                                ForEach(0..<35){ num1 in
                                     Text("\(num1)mm")
                                 }
                             }
@@ -184,7 +184,7 @@ struct Informations: View {
                             
                             Picker(selection: $user.hertel_L,
                                    label: Text("Hertel左")) {
-                                ForEach(5..<35){ num2 in
+                                ForEach(0..<35){ num2 in
                                     Text("\(num2)mm")
                                 }
                             }

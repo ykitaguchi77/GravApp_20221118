@@ -38,6 +38,7 @@ class User : ObservableObject {
     @Published var selected_CAS_conjRedness: Int = 0
     @Published var selected_CAS_conjChemosis: Int = 0
     @Published var selected_CAS_caruncularRedness: Int = 0
+
     @Published var hertel_R: Int = -1
     @Published var hertel_L: Int = -1
     @Published var aperture_R: Int = -1
@@ -223,6 +224,33 @@ struct ContentView: View {
                     self.user.free_disease = ""
                     self.user.isSendData = false
                     
+                    self.user.age = -1
+                    self.user.smokeYear = 0
+                    self.user.smokeNum = 0
+                    self.user.id = ""
+                    self.user.hashid = ""
+                    self.user.selected_gender = 0
+                    self.user.selected_hospital = 0
+                    self.user.selected_smoking = 0
+                    self.user.selected_severity = 0
+                    self.user.selected_CAS_retroBulbarPain = 0
+                    self.user.selected_CAS_gazePain = 0
+                    self.user.selected_subj_lidSwelling = 0
+                    self.user.selected_subj_blurredVision = 0
+                    self.user.selected_subj_primaryDiplopia = 0
+                    self.user.selected_subj_periDiplopia = 0
+                    
+                    self.user.selected_CAS_lidSwelling = 0
+                    self.user.selected_CAS_lidErythema = 0
+                    self.user.selected_CAS_conjRedness = 0
+                    self.user.selected_CAS_conjChemosis = 0
+                    self.user.selected_CAS_caruncularRedness = 0
+
+                    self.user.hertel_R = -1
+                    self.user.hertel_L = -1
+                    self.user.aperture_R = -1
+                    self.user.aperture_L = -1
+                    self.user.selected_needSteroids = 0
                 }),
                       secondaryButton:.destructive(Text("いいえ"), action:{}))
                 }

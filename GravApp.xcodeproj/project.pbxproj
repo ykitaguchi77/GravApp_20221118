@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BF060B1D277071A700FA9450 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BF060B1C277071A700FA9450 /* FirebaseAnalytics */; };
+		BF2A0B92286B5F2500CA2C06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF2A0B91286B5F2500CA2C06 /* GoogleService-Info.plist */; };
+		BF2A0B95286B619900CA2C06 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BF2A0B94286B619900CA2C06 /* FirebaseAnalytics */; };
 		BF5356AE2794F06D004C4BF5 /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5356AD2794F06D004C4BF5 /* ScanButton.swift */; };
 		BF60F24F2766E66000DD6253 /* GravApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F24E2766E66000DD6253 /* GravApp.swift */; };
 		BF60F2512766E66000DD6253 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2502766E66000DD6253 /* ContentView.swift */; };
@@ -28,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF2A0B91286B5F2500CA2C06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BF5356AD2794F06D004C4BF5 /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
 		BF60F24B2766E66000DD6253 /* GravApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GravApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF60F24E2766E66000DD6253 /* GravApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravApp.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF2A0B95286B619900CA2C06 /* FirebaseAnalytics in Frameworks */,
 				BF060B1D277071A700FA9450 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				BF60F2762766F2CE00DD6253 /* GravApp-Info.plist */,
+				BF2A0B91286B5F2500CA2C06 /* GoogleService-Info.plist */,
 				BF60F2632766E71200DD6253 /* Pages */,
 				BF60F2622766E6FB00DD6253 /* Extension */,
 				BF60F2522766E66200DD6253 /* Assets.xcassets */,
@@ -144,6 +149,7 @@
 			name = GravApp;
 			packageProductDependencies = (
 				BF060B1C277071A700FA9450 /* FirebaseAnalytics */,
+				BF2A0B94286B619900CA2C06 /* FirebaseAnalytics */,
 			);
 			productName = CorneaApp_newer;
 			productReference = BF60F24B2766E66000DD6253 /* GravApp.app */;
@@ -175,6 +181,7 @@
 			mainGroup = BF60F2422766E66000DD6253;
 			packageReferences = (
 				BF060B1B277071A700FA9450 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BF2A0B93286B619900CA2C06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = BF60F24C2766E66000DD6253 /* Products */;
 			projectDirPath = "";
@@ -191,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF60F2562766E66200DD6253 /* Preview Assets.xcassets in Resources */,
+				BF2A0B92286B5F2500CA2C06 /* GoogleService-Info.plist in Resources */,
 				BF60F2532766E66200DD6253 /* Assets.xcassets in Resources */,
 				BF7807772856472F00DB90B9 /* Tutorial.mp4 in Resources */,
 			);
@@ -451,12 +459,25 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		BF2A0B93286B619900CA2C06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		BF060B1C277071A700FA9450 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BF060B1B277071A700FA9450 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		BF2A0B94286B619900CA2C06 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF2A0B93286B619900CA2C06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -142,6 +142,11 @@ struct SendData: View {
         let string: String = String(num)
         return string
     }
+    
+    public func doubleToString(num:Double)->String{
+        let string: String = String(num)
+        return string
+    }
 
 
     //private func saveToDoc (image: UIImage, fileName: String ) -> Bool{
