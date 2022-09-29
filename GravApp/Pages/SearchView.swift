@@ -150,7 +150,7 @@ struct Search: View {
             let tempDirectory: URL = URL(fileURLWithPath: NSTemporaryDirectory())
             let croppedMovieFileURL: URL = tempDirectory.appendingPathComponent("mytemp2.mov")
             
-            MovieCropper.exportSquareMovie(sourceURL: moviePath, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
+            MovieCropperForLoad.exportSquareMovie(sourceURL: moviePath, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
                 // 正方形にクロッピングされた動画をフォトライブラリに保存
             })
             //ResultHolderに保存

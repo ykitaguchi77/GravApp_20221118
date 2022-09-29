@@ -118,13 +118,13 @@
 			isa = PBXGroup;
 			children = (
 				BF60F2642766E72A00DD6253 /* CameraPage.swift */,
+				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
 				BF7DECC227999CB000DA5976 /* InterviewPage.swift */,
 				BF60F2502766E66000DD6253 /* ContentView.swift */,
 				BF60F2662766E74A00DD6253 /* InformationView.swift */,
 				BF60F26C2766E77800DD6253 /* SendDataView.swift */,
 				BFEE8B2427B7EEA70058F6C6 /* HowToTakeView.swift */,
 				BF7807762856472F00DB90B9 /* Tutorial.mp4 */,
-				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
 				BF60F24E2766E66000DD6253 /* GravApp.swift */,
 				BFA772862843932B0089F96D /* SearchView.swift */,
 			);

@@ -13,6 +13,7 @@ struct CameraPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var imageData : Data = .init(capacity:0)
     @State var rawImage : Data = .init(capacity:0)
+    @State var load : Data = .init(capacity:0)
 
     @State var isActionSheet = true
     @State var isImagePicker = true
@@ -22,7 +23,7 @@ struct CameraPage: View {
                 VStack(spacing:0){
                         ZStack{
                             NavigationLink(
-                                destination: Imagepicker(show: $isImagePicker, image: $imageData, sourceType: self.user.sourceType,  equipmentVideo: self.user.equipmentVideo),
+                                destination: Imagepicker(show: $isImagePicker, image: $imageData, sourceType: self.user.sourceType,  equipmentVideo: self.user.equipmentVideo, loadVideo: self.user.loadVideo),
                                 isActive:$isImagePicker,
                                 label: {
                                     Text("TakePhoto")

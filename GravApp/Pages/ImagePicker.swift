@@ -25,6 +25,7 @@ struct Imagepicker : UIViewControllerRepresentable {
     
     var sourceType:UIImagePickerController.SourceType
     var equipmentVideo:Bool
+    var loadVideo:Bool
  
     func makeCoordinator() -> Imagepicker.Coodinator {
         
@@ -129,12 +130,20 @@ struct Imagepicker : UIViewControllerRepresentable {
                     let tempDirectory: URL = URL(fileURLWithPath: NSTemporaryDirectory())
                     let croppedMovieFileURL: URL = tempDirectory.appendingPathComponent("mytemp2.mov")
                     
-
-                    MovieCropper.exportSquareMovie(sourceURL: mediaUrl, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
-                        // 正方形にクロッピングされた動画をフォトライブラリに保存
-                        self.saveMovieToPhotoLibrary(fileURL: croppedMovieFileURL)
-                        self.saveToResultHolder(fileURL: croppedMovieFileURL)
-                    })
+                    
+                    if self.parent.loadVideo == true{
+                        MovieCropperForLoad.exportSquareMovie(sourceURL: mediaUrl, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
+                            // 正方形にクロッピングされた動画をフォトライブラリに保存
+                            self.saveMovieToPhotoLibrary(fileURL: croppedMovieFileURL)
+                            self.saveToResultHolder(fileURL: croppedMovieFileURL)
+                        })
+                    }else{
+                        MovieCropper.exportSquareMovie(sourceURL: mediaUrl, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
+                            // 正方形にクロッピングされた動画をフォトライブラリに保存
+                            self.saveMovieToPhotoLibrary(fileURL: croppedMovieFileURL)
+                            self.saveToResultHolder(fileURL: croppedMovieFileURL)
+                        })
+                    }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 

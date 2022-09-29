@@ -56,6 +56,8 @@ class User : ObservableObject {
     @Published var isSendData: Bool = false
     @Published var sourceType: UIImagePickerController.SourceType = .camera //撮影モードがデフォルト
     @Published var equipmentVideo: Bool = true //video or camera 撮影画面のマージ指標変更のため
+    @Published var loadVideo: Bool = true //load or photo 撮影画面のマージ指標変更のため
+
 
 
     }
@@ -130,6 +132,7 @@ struct ContentView: View {
                 Button(action: {
                     self.user.sourceType = UIImagePickerController.SourceType.camera
                     self.user.equipmentVideo = true
+                    self.user.loadVideo = false
                     self.goTakePhoto = true /*またはself.show.toggle() */
                     self.user.isSendData = false //撮影済みを解除
                     ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
@@ -188,6 +191,7 @@ struct ContentView: View {
             Button(action: {
                  self.user.sourceType = UIImagePickerController.SourceType.photoLibrary
                  self.user.isSendData = false //撮影済みを解除
+                 self.user.loadVideo = true
                  self.uploadData = true /*またはself.show.toggle() */
                  
              }) {
