@@ -35,7 +35,7 @@ struct HowToTakeView: View {
                             .fontWeight(.black)
                             .padding(.bottom)
 
-                        Text("①楕円形のガイドに顔の輪郭を合わせます")
+                        Text("①楕円形のガイドに顔の輪郭を合わせます（少しはみ出てもOK）")
                             .font(.title2)
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
@@ -58,26 +58,28 @@ struct HowToTakeView: View {
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
 
-                        Text("④まずは正面視で")
+                        Text("④まずは正面視でカメラを見て")
                             .font(.title2)
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
                             
-                        Text("⑤上方視→下方視")
+                        Text("⑤（カメラから目線を外して）顔を上向き→下向き")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width, alignment: .leading)
                             .padding(.bottom)
                             
-                        Text("⑥右方視→左方視")
+                        Text("⑥（カメラから目線を外して）顔を右向き→左向き")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width, alignment: .leading)
+                            .padding(.bottom)
                             
-                        Text("⑦目を見開く")
+                        Text("⑦（再びカメラ目線で）目を見開く")
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .frame(width: bodyView.size.width, alignment: .leading)
+                            .padding(.bottom)
                             
                         Text("⑧撮影終了ボタンを押す")
                             .font(.title2)
