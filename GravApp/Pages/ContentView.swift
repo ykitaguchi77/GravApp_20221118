@@ -49,7 +49,8 @@ class User : ObservableObject {
     @Published var gender: [String] = ["", "男", "女"]
     @Published var YesNo: [String] = ["", "あり", "なし"]
     @Published var hospitals: [String] = ["", "オリンピア眼科病院", "大阪大"]
-    @Published var severity: [String] = ["", "眼症なし", "軽症", "中等症〜"]
+    @Published var severity: [String] = ["", "対照", "なし", "軽症", "中等症〜"]
+    @Published var steroid: [String] = ["", "あり", "なし", "済み"]
 
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false

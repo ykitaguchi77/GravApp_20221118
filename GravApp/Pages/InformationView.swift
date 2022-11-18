@@ -215,8 +215,8 @@ struct Informations: View {
                                 Text("ステロイド療法？")
                                 Picker(selection: $user.selected_needSteroids,
                                            label: Text("YesNo")) {
-                                    ForEach(0..<user.YesNo.count) {
-                                        Text(self.user.YesNo[$0])
+                                    ForEach(0..<user.steroid.count) {
+                                        Text(self.user.steroid[$0])
                                             }
                                     }
                                     .onChange(of: user.selected_needSteroids) {_ in
